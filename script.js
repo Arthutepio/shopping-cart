@@ -1,3 +1,5 @@
+const fetchProducts = () => fetch('https://api.mercadolibre.com/sites/MLB/search?q=computador');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
