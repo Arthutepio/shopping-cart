@@ -38,9 +38,9 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-const getProduct = async () => {
+const getProduct = async (item) => {
   const itensSection = document.querySelector('.items');
-  const result = await fetchProducts();
+  const result = await fetchProducts(item);
   result.results.forEach((e) => {
     const createProduct = createProductItemElement({
       sku: e.id, 
@@ -52,6 +52,6 @@ const getProduct = async () => {
 };
 
 window.onload = async () => {
-   await getProduct();
+   await getProduct('computador');
   //  fetchProducts('computador');
 };
