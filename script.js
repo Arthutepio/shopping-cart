@@ -54,4 +54,5 @@ const getProduct = async (item) => {
 window.onload = async () => {
    await getProduct('computador');
   //  fetchProducts('computador');
+  // await fetchItem('MLB1615760527');
 };
