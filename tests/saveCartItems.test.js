@@ -12,9 +12,9 @@ describe('3 - Teste a função saveCartItems', () => {
     expect.assertions(1);
   });
 
-  it('', async () => {
+  it('Verifica se, ao executar saveCartItems com o argumento <ol><li>Item</li></ol>, o método localStorage.setItem é chamado com dois parâmetros, sendo o primeiro "cartItems" e o segundo sendo o valor passado como argumento para saveCartItems.', async () => {
     const response = await saveCartItems('<ol><li>Item</li></ol>');
-    expect(localStorage.setItem).toBeCalled('cartItems', response);
+    expect(localStorage.setItem).toBeCalledWith('cartItems', response);
     expect.assertions(1);
   });
 });
