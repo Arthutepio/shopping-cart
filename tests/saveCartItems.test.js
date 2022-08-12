@@ -6,15 +6,16 @@ localStorageSimulator('setItem');
 describe('3 - Teste a função saveCartItems', () => {
   // implemente seus testes aqui
   // fail('Teste vazio');
-  it('se, ao executar saveCartItems com o argumento <ol><li>Item</li></ol>, o método localStorage.setItem é chamado;', async () => {
-    await saveCartItems('<ol><li>Item</li></ol>');
+  it('se, ao executar saveCartItems com o argumento <ol><li>Item</li></ol>, o método localStorage.setItem é chamado;', () => {
+    saveCartItems('<ol><li>Item</li></ol>');
     expect(localStorage.setItem).toBeCalled();
     expect.assertions(1);
   });
 
-  it('Verifica se, ao executar saveCartItems com o argumento <ol><li>Item</li></ol>, o método localStorage.setItem é chamado com dois parâmetros, sendo o primeiro "cartItems" e o segundo sendo o valor passado como argumento para saveCartItems.', async () => {
-    const response = await saveCartItems('<ol><li>Item</li></ol>');
-    expect(localStorage.setItem).toBeCalledWith('cartItems', response);
+  it('Verifica se, ao executar saveCartItems com o argumento <ol><li>Item</li></ol>, o método localStorage.setItem é chamado com dois parâmetros, sendo o primeiro "cartItems" e o segundo sendo o valor passado como argumento para saveCartItems.', () => {
+    const arg = saveCartItems('<ol><li>Item</li></ol>');
+    const arg1 = 'cartItems';
+    expect(localStorage.setItem).toHaveBeenCalledWith(arg1, arg);
     expect.assertions(1);
   });
 });

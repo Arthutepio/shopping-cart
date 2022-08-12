@@ -1,3 +1,12 @@
+const cartShoppingArea = document.querySelector('.cart__items');
+const btnAddCartShopping = document.querySelector('.items');
+const empytCart = document.querySelector('.empty-cart');
+
+empytCart.addEventListener('click', () => {
+  console.log('ok');
+  cartShoppingArea.innerText = '';
+});
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -26,13 +35,13 @@ const createProductItemElement = ({ sku, name, image }) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-// ==============requisito 3=====================//
+// ==============requisito 5=====================//
 
 const cartItemClickListener = (event) => {
   // coloque seu código aqui
-// console.log(event);
-const clean = event.target;
-// console.log(clean);
+  // console.log(event);
+  const clean = event.target;
+  // console.log(clean);
 clean.remove();
 };
 
@@ -61,9 +70,6 @@ const getProduct = async () => {
 
 // ==============requisito 4=====================//
 
-const btnAddCartShopping = document.querySelector('.items');
-const cartShoppingArea = document.querySelector('.cart__items');
-
 const addToCart = async (id) => {
   const result = await fetchItem(id);
   // console.log(result);
@@ -74,6 +80,7 @@ const addToCart = async (id) => {
   };
   // console.log(createObjectProduct); // retorna o obj
   cartShoppingArea.appendChild(createCartItemElement(createObjectProduct));
+  saveCartItems('cartItems', cartShoppingArea.innerHTML);
 };
 
 btnAddCartShopping.addEventListener('click', (event) => {
@@ -89,6 +96,7 @@ btnAddCartShopping.addEventListener('click', (event) => {
 
 window.onload = () => {
    getProduct();
-  //  fetchProducts('computador');
+   cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
+   //  fetchProducts('computador');
   // await fetchItem('MLB1615760527');
 };
