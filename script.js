@@ -55,7 +55,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-// ==============requisito 3=====================//
+// ==============requisito 2=====================//
 
 const getProduct = async () => {
   const itens = document.querySelector('.items');
@@ -96,13 +96,30 @@ btnAddCartShopping.addEventListener('click', (event) => {
   }
 });
 
-window.onload = () => {
-   getProduct();
-   cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
+const loading = () => {
+  const container = document.querySelector('.items');
+  const paragraph = document.createElement('p');
+  paragraph.className = 'loading';
+  paragraph.innerText = 'carregando...';
+  container.appendChild(paragraph);
+  // console.log(paragraph);
+  // return paragraph;
+};
+
+// ==============requisito 8=====================//
+
+const addEvent = () => {
+  cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
    const array = document.querySelectorAll('.cart__item');
    array.forEach((e) => {
     e.addEventListener('click', cartItemClickListener);
    });
-   //  fetchProducts('computador');
-  // await fetchItem('MLB1615760527');
+};
+
+window.onload = async () => {
+  loading();
+  await getProduct();
+  addEvent();
+  const removeLoad = document.querySelector('.loading');
+  removeLoad.remove();
 };
