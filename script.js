@@ -5,7 +5,7 @@ const empytCart = document.querySelector('.empty-cart');
 // ==============requisito 10=====================//
 
 empytCart.addEventListener('click', () => {
-  console.log('ok');
+  // console.log('ok');
   cartShoppingArea.innerText = '';
 });
 
@@ -96,6 +96,16 @@ btnAddCartShopping.addEventListener('click', (event) => {
   }
 });
 
+// ==============requisito 8=====================//
+
+const addEvent = () => {
+  cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
+  const array = document.querySelectorAll('.cart__item');
+  array.forEach((e) => {
+    e.addEventListener('click', cartItemClickListener);
+  });
+};
+
 // ==============requisito 11=====================//
 
 const loading = () => {
@@ -108,16 +118,6 @@ const loading = () => {
   // return paragraph;
 };
 
-// ==============requisito 8=====================//
-
-const addEvent = () => {
-  cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
-   const array = document.querySelectorAll('.cart__item');
-   array.forEach((e) => {
-    e.addEventListener('click', cartItemClickListener);
-   });
-};
- 
 window.onload = async () => {
   loading();
   await getProduct();
