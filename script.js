@@ -1,6 +1,7 @@
 const cartShoppingArea = document.querySelector('.cart__items');
 const btnAddCartShopping = document.querySelector('.items');
 const empytCart = document.querySelector('.empty-cart');
+const total = document.querySelectorAll('.total-price');
 
 // ==============requisito 10=====================//
 
@@ -48,6 +49,10 @@ const cartItemClickListener = (event) => {
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
+  let num = parseInt(salePrice);
+  num += num;
+  console.log(num);
+
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
@@ -96,6 +101,8 @@ btnAddCartShopping.addEventListener('click', (event) => {
   }
 });
 
+// ==============requisito 11=====================//
+
 const loading = () => {
   const container = document.querySelector('.items');
   const paragraph = document.createElement('p');
@@ -115,7 +122,7 @@ const addEvent = () => {
     e.addEventListener('click', cartItemClickListener);
    });
 };
-
+ 
 window.onload = async () => {
   loading();
   await getProduct();
