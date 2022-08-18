@@ -2,12 +2,10 @@ const cartShoppingArea = document.querySelector('.cart__items');
 const btnAddCartShopping = document.querySelector('.items');
 const empytCart = document.querySelector('.empty-cart');
 
-// ==============requisito 10=====================//
-
-empytCart.addEventListener('click', () => {
-  // console.log('ok');
-  cartShoppingArea.innerText = '';
-});
+const renderPrice = (num) => {
+  const total = document.querySelector('.total-price');
+  total.innerText = num;
+};
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -26,25 +24,33 @@ const createCustomElement = (element, className, innerText) => {
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
-
+  
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
+  
   return section;
 };
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-// ==============requisito 5=====================//
+const sumProducts = () => {
+  const productList = document.querySelectorAll('.cart__items li');
+  if (productList.length === 0) {
+    renderPrice(0);
+  }
+  let total = 0;
+  productList.forEach((product) => {
+  total += Number(product.innerText.split('$')[1]);
+    renderPrice(total);
+  });
+};
 
 const cartItemClickListener = (event) => {
-  // coloque seu código aqui
-  console.log(event);
-  const clean = event.target;
-  // console.log(clean);
-  clean.remove();
+  total -= Number(event.target.innerText.split('$')[1]);
+  event.target.remove();
+  sumProducts();
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -54,8 +60,6 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
-
-// ==============requisito 2=====================//
 
 const getProduct = async () => {
   const itens = document.querySelector('.items');
@@ -70,7 +74,11 @@ const getProduct = async () => {
   });
 };
 
-// ==============requisito 4=====================//
+empytCart.addEventListener('click', () => {
+  // console.log('ok');
+  cartShoppingArea.innerText = '';
+  localStorage.clear();
+});
 
 const addToCart = async (id) => {
   const result = await fetchItem(id);
@@ -83,6 +91,7 @@ const addToCart = async (id) => {
   // console.log(createObjectProduct); // retorna o obj
   cartShoppingArea.appendChild(createCartItemElement(createObjectProduct));
   saveCartItems('cartItems', cartShoppingArea.innerHTML);
+  sumProducts();
 };
 
 btnAddCartShopping.addEventListener('click', (event) => {
@@ -96,8 +105,6 @@ btnAddCartShopping.addEventListener('click', (event) => {
   }
 });
 
-// ==============requisito 8=====================//
-
 const addEvent = () => {
   cartShoppingArea.innerHTML = getSavedCartItems('cartItems');
   const array = document.querySelectorAll('.cart__item');
@@ -106,16 +113,12 @@ const addEvent = () => {
   });
 };
 
-// ==============requisito 11=====================//
-
 const loading = () => {
   const container = document.querySelector('.items');
   const paragraph = document.createElement('p');
   paragraph.className = 'loading';
   paragraph.innerText = 'carregando...';
   container.appendChild(paragraph);
-  // console.log(paragraph);
-  // return paragraph;
 };
 
 window.onload = async () => {
