@@ -75,20 +75,17 @@ const getProduct = async () => {
 };
 
 empytCart.addEventListener('click', () => {
-  // console.log('ok');
   cartShoppingArea.innerText = '';
   localStorage.clear();
 });
 
 const addToCart = async (id) => {
   const result = await fetchItem(id);
-  // console.log(result);
   const createObjectProduct = { 
     sku: result.id, 
     name: result.title, 
     salePrice: result.price,
   };
-  // console.log(createObjectProduct); // retorna o obj
   cartShoppingArea.appendChild(createCartItemElement(createObjectProduct));
   saveCartItems('cartItems', cartShoppingArea.innerHTML);
   sumProducts();
@@ -96,11 +93,8 @@ const addToCart = async (id) => {
 
 btnAddCartShopping.addEventListener('click', (event) => {
   const btnClick = event.target;
-  // console.log(btnClick.className); // item__add
   if (btnClick.className === 'item__add') {
-    // console.log(event.target.parentNode);
     const id = getSkuFromProductItem(event.target.parentNode);
-    // console.log(id); // retorna o id
     addToCart(id);
   }
 });
