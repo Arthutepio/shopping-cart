@@ -10,7 +10,7 @@ Para utilizar o repositório no desenvolvimento, siga os seguintes passos:
 1 - Clone o repositório: 
 ```
 git clone git@github.com:Arthutepio/shopping-cart.git
-cd Arthutepio/shopping-cart
+cd shopping-cart
 ```
 2 - Instale as dependências na raiz do projeto:
 ```
