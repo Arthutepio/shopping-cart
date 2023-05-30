@@ -24,7 +24,7 @@ npm install
 ## 🛠️ Desenvolvido com:
 * [Test Driven Development](https://blog.betrybe.com/tecnologia/tdd-test-driven-development/) - TDD desenvolvimento orientado a testes;
 * [Node.js](https://nodejs.org/pt-br/docs/) - para execução de testes e instalação de pacotes de bibliotecas;
-* [JavaScript](https://github.com/topics/javascript) - para execução de testes e instalação de pacotes de bibliotecas;
+* [JavaScript](https://github.com/topics/javascript) - linguagem de script;
 * [Git](https://git-scm.com/doc) - para versionamento;
 * [API](https://developers.mercadolivre.com.br/pt_br/itens-e-buscas)- Foi consumida uma API do Mercado Livre;
 
