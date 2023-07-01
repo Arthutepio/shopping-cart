@@ -40,6 +40,7 @@ const sumProducts = () => {
   if (productList.length === 0) {
     renderPrice(0);
   }
+  
   let total = 0;
   productList.forEach((product) => {
   total += Number(product.innerText.split('$')[1]);
@@ -86,6 +87,7 @@ const addToCart = async (id) => {
     name: result.title, 
     salePrice: result.price,
   };
+
   cartShoppingArea.appendChild(createCartItemElement(createObjectProduct));
   saveCartItems('cartItems', cartShoppingArea.innerHTML);
   sumProducts();
